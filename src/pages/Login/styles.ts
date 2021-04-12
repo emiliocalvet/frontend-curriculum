@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { shade } from 'polished'
 
-import signInBackground from '../../assets/img3.jpg'
-
 export const Container = styled.div`
   height: 100vh;
   display: flex;
@@ -47,10 +45,4 @@ export const Content = styled.div`
       color: ${shade(0.2, '#ff9000')};
     }
   }
-`
-
-export const Background = styled.div`
- flex: 1;
- background: url(${signInBackground}) no-repeat center;
- background-size: cover;
 `

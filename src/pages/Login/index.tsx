@@ -2,12 +2,13 @@ import React, { FormEvent, useState } from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { FiUser, FiLock} from 'react-icons/fi'
 
-import InputWithIcon from '../../components/InputWithIcon'
 import Button from '../../components/Button'
+import InputWithIcon from '../../components/InputWithIcon'
+import BackgroundRightSide from '../../components/BackgroundRightSide'
 
-import { Container, Content, Background } from './styles'
+import { Container, Content} from './styles'
 
-const SignIn: React.FC = () => {
+const Login: React.FC = () => {
   const history = useHistory()
 
   const [username, setUsername] = useState('')
@@ -25,7 +26,6 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <h1>Curriculum</h1>
-
         <form onSubmit={e => handleSubmit(e)}>
           <InputWithIcon
             name="username"
@@ -44,8 +44,8 @@ const SignIn: React.FC = () => {
         </form>
         <Link to="/">cancelar</Link>
       </Content>
-      <Background />
+      <BackgroundRightSide />
     </Container>)
 }
 
-export default SignIn
+export default Login
