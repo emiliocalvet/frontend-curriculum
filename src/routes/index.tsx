@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage'
 import RegisterPage from '../pages/RegisterPage'
 import FindCurriculum from '../pages/FindCurriculum'
 import CurriculumView from '../pages/CurriculumView'
+import AdministrationPage from '../pages/AdministrationPage'
 
 const Routes: React.FC = () => (
   <Switch>
@@ -14,6 +15,7 @@ const Routes: React.FC = () => (
     <Route path="/find" component={FindCurriculum} />
     <Route path="/register" component={RegisterPage} />
     <Route path="/curriculum/:key" component={CurriculumView} />
+    <Route path="/adm" component={AdministrationPage} />
   </Switch>
 )
 
