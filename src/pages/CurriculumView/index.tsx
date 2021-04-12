@@ -40,7 +40,7 @@ const CurriculumView: React.FC = () => {
   useEffect(() => {
     function loadCurriculum() {
       api.get(`/curriculums/key/${params.key}`).then(response => {
-        setCurriculum(response.data)
+        setCurriculum({ ...response.data, bornDate: new Date(response.data.bornDate) })
       }).catch(_ => {
         toast.error('Erro ao carregar o currículo!', {
           onClose: () => history.push('/')
@@ -73,6 +73,12 @@ const CurriculumView: React.FC = () => {
             <h2>Informações Pessoais</h2>
             <p><span>Nome: </span>{curriculum?.name}</p>
             <p><span>CPF: </span>{curriculum?.cpf}</p>
+            <p>
+              <span>Data de Nascimento: </span>
+              {curriculum && curriculum?.bornDate.getUTCDate()}
+              /{curriculum && curriculum?.bornDate.getUTCMonth() + 1}
+              /{curriculum && curriculum?.bornDate.getUTCFullYear()}
+            </p>
             <p><span>Telefone: </span>{curriculum?.phone}</p>
             <p><span>Email: </span>{curriculum?.email}</p>
             <p><span>Escolaridade: </span>{curriculum?.education}</p>

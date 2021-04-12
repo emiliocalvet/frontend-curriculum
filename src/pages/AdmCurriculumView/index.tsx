@@ -40,7 +40,7 @@ const AdmCurriculumView: React.FC = () => {
   useEffect(() => {
     function loadCurriculum() {
       api.get(`/curriculums/${params.id}`).then(response => {
-        setCurriculum(response.data)
+        setCurriculum({ ...response.data, bornDate: new Date(response.data.bornDate) })
       }).catch(_ => {
         toast.error('Erro ao carregar o currículo!', {
           onClose: () => history.push('/')
@@ -54,17 +54,17 @@ const AdmCurriculumView: React.FC = () => {
   const handleStatusChange = (verif: boolean) => {
     setTimeout(() => {
       if (verif) {
-        api.patch(`curriculums/${params.id}`, {status: 'aprovado'}).then(response => {
+        api.patch(`curriculums/${params.id}`, { status: 'aprovado' }).then(response => {
           if (response.data) {
-            setCurriculum(response.data)
+            setCurriculum({ ...response.data, bornDate: new Date(response.data.bornDate) })
           }
-        }).catch(_=> {
+        }).catch(_ => {
           toast.error('Erro ao editar o status!')
         })
-      }else {
-        api.patch(`curriculums/${params.id}`, {status: 'reprovado'}).then(response => {
+      } else {
+        api.patch(`curriculums/${params.id}`, { status: 'reprovado' }).then(response => {
           if (response.data) {
-            setCurriculum(response.data)
+            setCurriculum({ ...response.data, bornDate: new Date(response.data.bornDate) })
           }
         }).catch(_ => {
           toast.error('Erro ao editar o status!')
@@ -111,6 +111,12 @@ const AdmCurriculumView: React.FC = () => {
             <h2>Informações Pessoais</h2>
             <p><span>Nome: </span>{curriculum?.name}</p>
             <p><span>CPF: </span>{curriculum?.cpf}</p>
+            <p>
+              <span>Data de Nascimento: </span>
+              {curriculum && curriculum?.bornDate.getUTCDate()}
+              /{curriculum && curriculum?.bornDate.getUTCMonth() + 1}
+              /{curriculum && curriculum?.bornDate.getUTCFullYear()}
+            </p>
             <p><span>Telefone: </span>{curriculum?.phone}</p>
             <p><span>Email: </span>{curriculum?.email}</p>
             <p><span>Escolaridade: </span>{curriculum?.education}</p>
