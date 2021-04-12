@@ -1,5 +1,7 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
+
+import Route from './Route'
 
 import Login from '../pages/Login'
 import HomePage from '../pages/HomePage'
@@ -17,8 +19,9 @@ const Routes: React.FC = () => (
     <Route path="/register" component={RegisterPage} />
     <Route path="/curriculum/:key" component={CurriculumView} />
 
-    <Route path="/adm" exact component={AdministrationPage} />
-    <Route path="/adm/curriculum/:id" component={AdmCurriculumView} />
+    {/* Protected Routes (to protect the route set isPrivate to true) */}
+    <Route path="/adm" exact component={AdministrationPage} isPrivate={false} />
+    <Route path="/adm/curriculum/:id" component={AdmCurriculumView} isPrivate={false} />
   </Switch>
 )
 
