@@ -7,7 +7,15 @@ Sistema para cadastro de currículos.
 Necessário arquivo .env na raiz do projeto com endereço do backend.
 ex: REACT_APP_BASE_URL=http://localhost:3333/
 
-## Scripts disponíveis
+## Instalação
+
+Para baixar todas as dependências, execute o seguinte comando na raiz do projeto.
+
+```bash
+$ npm install
+```
+
+## Executar
 
 No diretório do projeto, você pode executar o seguinte commando:
 
@@ -23,3 +31,7 @@ Voce tambem será capaz de ver os erros no console.
 
 Constrói o código para produção e coloca na pasta build.\
 Agrupa corretamente o React no modo de produção e otimiza a construção para o melhor desempenho./
+
+## Sobre
+
+- Author - [Emilio Calvet](https://emiliocalvet.github.io)
