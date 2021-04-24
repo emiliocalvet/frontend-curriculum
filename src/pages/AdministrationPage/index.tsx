@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { Slide, ToastContainer, toast } from 'react-toastify'
 
 import api from '../../services/api'
+import { Context } from '../../context/AuthContext'
 
 import Background from '../../components/BackgroundLeftSide'
 import PieChart from '../../components/PieChart'
@@ -52,6 +53,7 @@ interface StatusCount {
 
 const AdministrationPage: React.FC = () => {
   const history = useHistory()
+  const auth = useContext(Context)
 
   const params = useParams<{ key: string }>()
   const [curriculums, setCurriculums] = useState<Curriculum[]>([])
@@ -122,7 +124,7 @@ const AdministrationPage: React.FC = () => {
             <BarChart data={educationCount} />
           </div>
 
-          <Button type="button" onClick={() => history.push('/')} >Sair</Button>
+          <Button type="button" onClick={() => auth.signOut()} >Sair</Button>
         </div>
       </Content>
     </Container>

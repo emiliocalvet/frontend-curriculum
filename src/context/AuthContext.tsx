@@ -28,7 +28,7 @@ const AuthProvider: React.FC = ({ children }) => {
     setLoading(false)
   }, [setLoading])
 
-  const signIn = useCallback(async ({ username, password }) => {
+  const signIn = useCallback(async ({ username, password }: SignInCredentials) => {
     const response = await api.post('auth/signin', { username, password })
     const { accessToken } = response.data
     localStorage.setItem('token', JSON.stringify(accessToken))

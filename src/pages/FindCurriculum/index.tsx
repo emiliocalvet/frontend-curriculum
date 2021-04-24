@@ -36,7 +36,7 @@ const FindCurriculum: React.FC = () => {
       <ToastContainer
         closeButton={false}
         position="top-right"
-        autoClose={3500}
+        autoClose={3000}
         transition={Slide}
         hideProgressBar={false}
       />

@@ -20,8 +20,8 @@ const Routes: React.FC = () => (
     <Route path="/curriculum/:key" component={CurriculumView} />
 
     {/* Protected Routes (to protect the route set isPrivate to true) */}
-    <Route path="/adm" exact component={AdministrationPage} isPrivate={false} />
-    <Route path="/adm/curriculum/:id" component={AdmCurriculumView} isPrivate={false} />
+    <Route path="/adm" exact component={AdministrationPage} isPrivate={true} />
+    <Route path="/adm/curriculum/:id" component={AdmCurriculumView} isPrivate={true} />
   </Switch>
 )
 
