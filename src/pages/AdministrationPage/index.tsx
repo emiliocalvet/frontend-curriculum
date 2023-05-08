@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom'
 import { Slide, ToastContainer, toast } from 'react-toastify'
 
 import api from '../../services/api'
-import { Context } from '../../context/AuthContext'
 
 import Background from '../../components/BackgroundLeftSide'
 import PieChart from '../../components/PieChart'
@@ -12,6 +11,7 @@ import Button from '../../components/Button'
 
 import { Container, Content } from './style'
 import 'react-toastify/dist/ReactToastify.css';
+import { Context } from '../../context/AuthContext'
 
 interface Skill {
   skillName: string,
@@ -124,7 +124,7 @@ const AdministrationPage: React.FC = () => {
             <BarChart data={educationCount} />
           </div>
 
-          <Button type="button" onClick={() => auth.signOut()} >Sair</Button>
+          <Button type="button" onClick={auth.signOut} >Sair</Button>
         </div>
       </Content>
     </Container>

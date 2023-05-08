@@ -1,16 +1,13 @@
-import React, { FormEvent, useState, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { FiUser, FiLock } from 'react-icons/fi'
-import { Slide, ToastContainer, toast } from 'react-toastify'
-
-import { Context } from '../../context/AuthContext'
+import React, { FormEvent, useContext, useState } from 'react'
+import {Link, useHistory} from 'react-router-dom'
+import { FiUser, FiLock} from 'react-icons/fi'
 
 import Button from '../../components/Button'
 import InputWithIcon from '../../components/InputWithIcon'
 import BackgroundRightSide from '../../components/BackgroundRightSide'
 
-import { Container, Content } from './styles'
-import 'react-toastify/dist/ReactToastify.css';
+import { Container, Content} from './styles'
+import { Context } from '../../context/AuthContext'
 
 const Login: React.FC = () => {
   const history = useHistory()
@@ -19,35 +16,15 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  //Function that receive credentials to authenticate. 
-  const handleSubmit = (e: FormEvent) => {
+  //Function that sends credentials and receive token to put on storage of browser. 
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-
-    auth.signIn({ username, password }).then(() => {
-      history.push('/adm')
-    }).catch((error) => {
-      if (error.response) {
-        const data = error.response.data
-        if (data.statusCode === 401) {
-          toast.warn('Credencial inválida!')
-        } else if (data.statusCode === 400) {
-          toast.warn('A chave precisa ter no mínimo 6 caracteres!')
-        } else {
-          toast.error('Serviço indisponível!')
-        }
-      }
-    })
+    await auth.signIn({username, password})
+    history.push('/adm')
   }
 
   return (
     <Container>
-      <ToastContainer
-        closeButton={false}
-        position="top-right"
-        autoClose={3000}
-        transition={Slide}
-        hideProgressBar={false}
-      />
       <Content>
         <h1>Curriculum</h1>
         <form onSubmit={e => handleSubmit(e)}>
@@ -64,7 +41,7 @@ const Login: React.FC = () => {
             placeholder="Senha"
           />
           {/* <Button type="submit" >Entrar</Button> */}
-          <Button type="submit">Entrar</Button>
+          <Button type="button" onClick={handleSubmit} >Entrar</Button>
         </form>
         <Link to="/">cancelar</Link>
       </Content>
